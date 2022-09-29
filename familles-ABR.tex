@@ -1,0 +1,407 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{mathrsfs}
+
+\usepackage[a4paper,width=160mm,top=35mm,bottom=35mm]{geometry}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{subfig}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{shapes}
+\usepackage{mathtools}
+\usepackage{tikz-qtree}
+
+
+\usepackage{tgpagella}
+
+
+
+\begin{document}
+\begin{center}
+{\LARGE Familles d'arbres binaires de recherche}
+\end{center}
+
+\medskip
+
+La classe ABR$_n$, qui représente les arbres binaires de recherche ayant $n$ éléments disjoints, est définie récursivement :
+\begin{itemize}
+\item ABR$_0$ contient l'arbre vide
+\item tout arbre d'un ABR$_{n+1}$ s'obtient par ajout aux feuilles d'un élément dans un arbre d'ABR$_n$
+\end{itemize}
+
+\bigskip
+
+ABR$_0$
+
+\begin{tikzpicture}[scale=1]
+
+$\bullet$
+
+\end{tikzpicture}
+
+
+ABR$_1$
+
+\begin{tikzpicture}[scale=1]
+
+\begin{scope}[shift={(0,0)}]\Tree [.1  $\bullet$   $\bullet$  ]
+\end{scope}
+
+\end{tikzpicture}
+
+\bigskip
+
+ABR$_2$
+
+\begin{tikzpicture}[scale=1]
+
+\begin{scope}[shift={(0,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(4,0)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]
+\end{scope}
+
+\end{tikzpicture}
+
+\bigskip
+
+ABR$_3$
+
+\begin{tikzpicture}[scale=.7]
+
+\begin{scope}[shift={(0,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(4,0)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(8,0)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(12,0)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(16,0)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(20,0)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+
+
+\end{tikzpicture}
+
+\bigskip
+
+ABR$_4$
+
+\begin{tikzpicture}[scale=.5]
+
+\begin{scope}[shift={(0,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(4,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(8,0)}]\Tree [.1  $\bullet$  [.4 [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(12,0)}]\Tree [.4 [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(16,0)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(20,0)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(24,0)}]\Tree [.1  $\bullet$  [.4 [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(28,0)}]\Tree [.4 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(0,-6)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(4,-6)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(8,-6)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(12,-6)}]\Tree [.4 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(16,-6)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(20,-6)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-6)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(28,-6)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(0,-12)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(4,-12)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(8,-12)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(12,-12)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(16,-12)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(20,-12)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-12)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(28,-12)}]\Tree [.4 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+
+
+
+\end{tikzpicture}
+
+
+\newpage
+
+ABR$_5$
+
+\begin{tikzpicture}[scale=.34]
+
+
+\begin{scope}[shift={(0,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$  [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(4,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$  [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(8,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.5 [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(12,0)}]\Tree [.1  $\bullet$  [.5 [.2  $\bullet$  [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(16,0)}]\Tree [.5 [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(20,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(24,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(28,0)}]\Tree [.1  $\bullet$  [.2  $\bullet$  [.5 [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(32,0)}]\Tree [.1  $\bullet$  [.5 [.2  $\bullet$  [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(36,0)}]\Tree [.5 [.1  $\bullet$  [.2  $\bullet$  [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(40,0)}]\Tree [.1  $\bullet$  [.4 [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(44,0)}]\Tree [.1  $\bullet$  [.4 [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(0,-6)}]\Tree [.1  $\bullet$  [.4 [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(4,-6)}]\Tree [.1  $\bullet$  [.5 [.4 [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ]  $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(8,-6)}]\Tree [.5 [.1  $\bullet$  [.4 [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(12,-6)}]\Tree [.4 [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(16,-6)}]\Tree [.4 [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(20,-6)}]\Tree [.4 [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-6)}]\Tree [.4 [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(28,-6)}]\Tree [.5 [.4 [.1  $\bullet$  [.2  $\bullet$  [.3  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(32,-6)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(36,-6)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(40,-6)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(44,-6)}]\Tree [.1  $\bullet$  [.5 [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(0,-12)}]\Tree [.5 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(4,-12)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(8,-12)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(12,-12)}]\Tree [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(16,-12)}]\Tree [.1  $\bullet$  [.5 [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(20,-12)}]\Tree [.5 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(24,-12)}]\Tree [.1  $\bullet$  [.4 [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(28,-12)}]\Tree [.1  $\bullet$  [.4 [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(32,-12)}]\Tree [.1  $\bullet$  [.4 [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(36,-12)}]\Tree [.1  $\bullet$  [.5 [.4 [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(40,-12)}]\Tree [.5 [.1  $\bullet$  [.4 [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(44,-12)}]\Tree [.4 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(0,-18)}]\Tree [.4 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(4,-18)}]\Tree [.4 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(8,-18)}]\Tree [.4 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(12,-18)}]\Tree [.5 [.4 [.1  $\bullet$  [.3 [.2  $\bullet$   $\bullet$  ]  $\bullet$  ] ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(16,-18)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(20,-18)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-18)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(28,-18)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(32,-18)}]\Tree [.5 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(36,-18)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(40,-18)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(44,-18)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(0,-24)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(4,-24)}]\Tree [.5 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(8,-24)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(12,-24)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(16,-24)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(20,-24)}]\Tree [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-24)}]\Tree [.5 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(28,-24)}]\Tree [.4 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(32,-24)}]\Tree [.4 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(36,-24)}]\Tree [.4 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(40,-24)}]\Tree [.4 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(44,-24)}]\Tree [.5 [.4 [.3 [.1  $\bullet$  [.2  $\bullet$   $\bullet$  ] ]  $\bullet$  ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(0,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(4,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(8,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(12,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(16,-30)}]\Tree [.5 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(20,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(24,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(28,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(32,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(36,-30)}]\Tree [.5 [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(40,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(44,-30)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(0,-36)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(4,-36)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(8,-36)}]\Tree [.5 [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(12,-36)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(16,-36)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(20,-36)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-36)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(28,-36)}]\Tree [.5 [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(32,-36)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(36,-36)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(40,-36)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(44,-36)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(0,-42)}]\Tree [.5 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(4,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(8,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ] ]
+\end{scope}
+\begin{scope}[shift={(12,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(16,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(20,-42)}]\Tree [.5 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$  [.4  $\bullet$   $\bullet$  ] ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(24,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(28,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(32,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(36,-42)}]\Tree [.2 [.1  $\bullet$   $\bullet$  ] [.5 [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(40,-42)}]\Tree [.5 [.2 [.1  $\bullet$   $\bullet$  ] [.4 [.3  $\bullet$   $\bullet$  ]  $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(44,-42)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(0,-48)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(4,-48)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(8,-48)}]\Tree [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(12,-48)}]\Tree [.5 [.4 [.2 [.1  $\bullet$   $\bullet$  ] [.3  $\bullet$   $\bullet$  ] ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(16,-48)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(20,-48)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-48)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(28,-48)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(32,-48)}]\Tree [.5 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(36,-48)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(40,-48)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(44,-48)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(0,-54)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(4,-54)}]\Tree [.5 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(8,-54)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(12,-54)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(16,-54)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$  [.5  $\bullet$   $\bullet$  ] ] ]
+\end{scope}
+\begin{scope}[shift={(20,-54)}]\Tree [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.5 [.4  $\bullet$   $\bullet$  ]  $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(24,-54)}]\Tree [.5 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ] [.4  $\bullet$   $\bullet$  ] ]  $\bullet$  ]
+\end{scope}
+\begin{scope}[shift={(28,-54)}]\Tree [.4 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(32,-54)}]\Tree [.4 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(36,-54)}]\Tree [.4 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(40,-54)}]\Tree [.4 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ] [.5  $\bullet$   $\bullet$  ] ]
+\end{scope}
+\begin{scope}[shift={(44,-54)}]\Tree [.5 [.4 [.3 [.2 [.1  $\bullet$   $\bullet$  ]  $\bullet$  ]  $\bullet$  ]  $\bullet$  ]  $\bullet$  ]
+\end{scope}
+
+
+
+\end{tikzpicture}
+
+
+
+
+\end{document}
