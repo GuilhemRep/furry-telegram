@@ -20,14 +20,25 @@ let rec decoupe arbre k =
       else let (g1,g2) = decoupe g k in (g1, (Arbre (r, g2, d)))
     )
 
-(*Ajoute [x] à la racine de [arbre] tout en gardant la structure d'ABR*)
+(*Ajoute [x] à la racine d'[arbre] tout en gardant la structure d'ABR*)
 let ajout_racine arbre x =
   let (g,d) = decoupe arbre x in
   Arbre (x, g, d)
 
+(*Ajoute [x] aux feuilles d'[arbre] tout en gardant la structure d'ABR*)
+let rec ajout_feuille arbre x = match arbre with
+  Vide -> Arbre(x, Vide, Vide)
+  |Arbre (r, g, d) when r>x -> Arbre(r, ajout_feuille g x, d)
+  |Arbre (r, g, d) when r=x -> arbre
+  |Arbre (r, g, d)          -> Arbre(r, g, ajout_feuille d x)
+
 (*Ajoute tous les élements de [l] à la racine de [arbre]*)
-let ajout_liste arbre l =
+let ajout_racine_liste arbre l =
   List.fold_left ajout_racine arbre l
+
+(*Ajoute tous les élements de [l] aux feuilles de [arbre]*)
+let ajout_feuille_liste arbre l =
+  List.fold_left ajout_feuille arbre l
 
 (*Affiche l'arbre au format tikz-qtree pour une utilisation LaTeX*)
 let affiche_qtree arbre = 
@@ -72,6 +83,7 @@ let permutations n =
 
 
 (*Exemple : générer les ABR5, sur 12 colones*)
+(*
 let () =
   let n = 5 in
   let colonne = 12 in
@@ -87,7 +99,7 @@ let () =
           print_string (",");
           print_int (-6*((!compteur)/colonne));
           print_string(")}]");
-          affiche_qtree (ajout_liste Vide t);
+          affiche_qtree (ajout_racine_liste Vide t);
           print_string ("\\end{scope}");
           print_newline();
           l:=q;
@@ -95,3 +107,4 @@ let () =
           incr compteur;
         )
   done
+*)
