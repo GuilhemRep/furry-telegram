@@ -95,15 +95,3 @@ let () =
           incr compteur;
         )
   done
-
-
-
-
-
-(* L'arbre du TD
-let arbre = Arbre(7,
-  Arbre(3,Arbre(1, Vide, Vide),Arbre(5, Vide, Vide)),
-  Arbre(15,
-  Arbre(12,Arbre(8, Vide, Arbre(11, Vide, Vide)),Vide),Arbre(17, Vide, Vide)))
-;; *)
-
