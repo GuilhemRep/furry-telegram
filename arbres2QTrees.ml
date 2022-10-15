@@ -9,7 +9,7 @@ au format qtree qui représente l'arbre obtenu.
 type abr = Vide | Arbre of (int * abr * abr)
 
 
-(*Effectue la découpe de [arbre] selon le pivot [k]*)
+(*Effectue la découpe de [arbre] selon le pivot [k] : renvoie deux arbres de valeurs < et >= à [k]*)
 let rec decoupe arbre k =
   match  arbre with
   | Vide -> (Vide, Vide)
@@ -44,9 +44,35 @@ let ajout_feuille_liste arbre l =
 let affiche_qtree arbre = 
   let rec aux arbre = match arbre with
     Vide -> print_string " $\\bullet$ " (*L'arbre vide est représenté par un point*)
-    |Arbre (r, g, d) -> print_string ("[.") ; print_int r ; print_string(" ") ; aux g ; print_string(" ") ; aux d ; print_string " ]"
-  in
-    print_string "\\Tree " ; aux arbre ; print_newline()
+    |Arbre (r, Vide, Vide) ->
+      (print_string ("[.") ;
+      print_int r ;
+      print_string(" ") ;
+      print_string " ]")
+    |Arbre (r, g, Vide) ->
+      (   print_string ("[.") ;
+      print_int r ;
+      print_string(" ") ;
+      aux g ;
+      print_string(" $\\bullet$ ") ;
+      print_string " ]")
+    |Arbre (r, Vide, d) ->
+      (print_string ("[.") ;
+      print_int r ;
+      print_string(" $\\bullet$ ") ;
+      print_string(" ") ;
+      aux d ; 
+      print_string " ]") 
+    |Arbre (r, g, d) ->
+      (   print_string ("[.") ;
+      print_int r ;
+      print_string(" ") ;
+      aux g ;
+      print_string(" ") ;
+      aux d ; 
+      print_string " ]") 
+    in
+      print_string "\\Tree " ; aux arbre ; print_newline()
 
 
 (*Génère une liste de listes représentant le groupe symétrique à [n] éléments*)
@@ -82,11 +108,11 @@ let permutations n =
 
 
 
-(*Exemple : générer les ABR5, sur 12 colones*)
-(*
+(*Exemple : générer les ABR3, sur 12 colones*)
+
 let () =
-  let n = 5 in
-  let colonne = 12 in
+  let n = 4 in
+  let colonne = 8 in
   let l = ref (permutations n) in
   let compteur = ref 0 in
   while !l <> [] do
@@ -107,4 +133,3 @@ let () =
           incr compteur;
         )
   done
-*)
